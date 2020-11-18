@@ -9,8 +9,8 @@ DROP TABLE june_green;
 */
 CREATE TABLE january_green(
 	vendor_id VARCHAR(255) NOT NULL,
-    pickup_datetime DATE NOT NULL,
-    dropoff_datetime DATE NOT NULL, 
+    pickup_datetime DATETIME NOT NULL,
+    dropoff_datetime DATETIME NOT NULL, 
     store_and_fwd_flag VARCHAR(255) NOT NULL, 
     rate_code INT NOT NULL,
     pickup_longitude DOUBLE NOT NULL, 
@@ -32,8 +32,8 @@ CREATE TABLE january_green(
 
 CREATE TABLE february_green(
 	vendor_id VARCHAR(255) NOT NULL,
-    pickup_datetime DATE NOT NULL,
-    dropoff_datetime DATE NOT NULL, 
+    pickup_datetime DATETIME NOT NULL,
+    dropoff_datetime DATETIME NOT NULL,  
     store_and_fwd_flag VARCHAR(255) NOT NULL, 
     rate_code INT NOT NULL,
     pickup_longitude DOUBLE NOT NULL, 
@@ -55,8 +55,8 @@ CREATE TABLE february_green(
 
 CREATE TABLE march_green(
 	vendor_id VARCHAR(255) NOT NULL,
-    pickup_datetime DATE NOT NULL,
-    dropoff_datetime DATE NOT NULL, 
+    pickup_datetime DATETIME NOT NULL,
+    dropoff_datetime DATETIME NOT NULL,  
     store_and_fwd_flag VARCHAR(255) NOT NULL, 
     rate_code INT NOT NULL,
     pickup_longitude DOUBLE NOT NULL, 
@@ -78,8 +78,8 @@ CREATE TABLE march_green(
 
 CREATE TABLE april_green(
 	vendor_id VARCHAR(255) NOT NULL,
-    pickup_datetime DATE NOT NULL,
-    dropoff_datetime DATE NOT NULL, 
+    pickup_datetime DATETIME NOT NULL,
+    dropoff_datetime DATETIME NOT NULL,  
     store_and_fwd_flag VARCHAR(255) NOT NULL, 
     rate_code INT NOT NULL,
     pickup_longitude DOUBLE NOT NULL, 
@@ -101,8 +101,8 @@ CREATE TABLE april_green(
 
 CREATE TABLE may_green(
 	vendor_id VARCHAR(255) NOT NULL,
-    pickup_datetime DATE NOT NULL,
-    dropoff_datetime DATE NOT NULL, 
+    pickup_datetime DATETIME NOT NULL,
+    dropoff_datetime DATETIME NOT NULL,  
     store_and_fwd_flag VARCHAR(255) NOT NULL, 
     rate_code INT NOT NULL,
     pickup_longitude DOUBLE NOT NULL, 
@@ -124,8 +124,8 @@ CREATE TABLE may_green(
 
 CREATE TABLE june_green(
 	vendor_id VARCHAR(255) NOT NULL,
-    pickup_datetime DATE NOT NULL,
-    dropoff_datetime DATE NOT NULL, 
+    pickup_datetime DATETIME NOT NULL,
+    dropoff_datetime DATETIME NOT NULL,  
     store_and_fwd_flag VARCHAR(255) NOT NULL, 
     rate_code INT NOT NULL,
     pickup_longitude DOUBLE NOT NULL, 
