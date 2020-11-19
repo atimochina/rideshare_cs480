@@ -1,12 +1,12 @@
 USE rideshare;
-/*
+
 DROP TABLE january_green;
 DROP TABLE february_green;
 DROP TABLE march_green;
 DROP TABLE april_green;
 DROP TABLE may_green;
 DROP TABLE june_green;
-*/
+
 CREATE TABLE january_green(
 	vendor_id VARCHAR(255) NOT NULL,
     pickup_datetime DATETIME NOT NULL,
