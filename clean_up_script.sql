@@ -58,17 +58,32 @@ FROM rideshare.february_green
 WHERE pickup_latitude != 0 AND pickup_longitude != 0 AND dropoff_latitude != 0 AND dropoff_longitude != 0 AND passenger_count = 2
 AND trip_distance > 0 AND pickup_datetime != dropoff_datetime;
 
-CREATE TABLE mar_green_one_rider
-SELECT ride_id, pickup_datetime, dropoff_datetime, pickup_longitude, pickup_latitude, dropoff_longitude, dropoff_latitude, passenger_count, trip_distance
-# FROM rideshare.march_3_january
-FROM rideshare.march_green
-WHERE pickup_latitude != 0 AND pickup_longitude != 0 AND dropoff_latitude != 0 AND dropoff_longitude != 0 AND passenger_count = 1
-AND trip_distance > 0 AND pickup_datetime != dropoff_datetime;
 
-CREATE TABLE mar_green_two_rider
-SELECT ride_id, pickup_datetime, dropoff_datetime, pickup_longitude, pickup_latitude, dropoff_longitude, dropoff_latitude, passenger_count, trip_distance
-# FROM rideshare.march_3_january
-FROM rideshare.march_green
-WHERE pickup_latitude != 0 AND pickup_longitude != 0 AND dropoff_latitude != 0 AND dropoff_longitude != 0 AND passenger_count = 2
-AND trip_distance > 0 AND pickup_datetime != dropoff_datetime;
+# MERGING THE DATABASES TO ADD YELLOW AND GREEN TAXIS TOGETHER 
+
+# all january single riders from green and yellow taxis
+CREATE TABLE jan_single_riders
+SELECT * FROM rideshare.jan_green_one_rider
+UNION
+SELECT * FROM rideshare.jan_yellow_one_rider;
+
+# all january double riders from green and yellow taxis
+CREATE TABLE jan_double_riders
+SELECT * FROM rideshare.jan_green_two_rider
+UNION
+SELECT * FROM rideshare.jan_yellow_two_rider;
+
+# all february single riders from green and yellow taxis
+CREATE TABLE feb_single_riders
+SELECT * FROM rideshare.feb_green_one_rider
+UNION
+SELECT * FROM rideshare.feb_yellow_one_rider;
+
+# all february double riders from green and yellow taxis
+CREATE TABLE feb_double_riders
+SELECT * FROM rideshare.feb_green_two_rider
+UNION
+SELECT * FROM rideshare.feb_yellow_two_rider;
+
+
 
