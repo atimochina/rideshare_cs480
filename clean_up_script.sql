@@ -1,15 +1,18 @@
 USE rideshare;
 
 /* Drop statements for tables. If reruning the script uncomment */
-
+/*
 DROP TABLE rideshare.jan_green_one_rider;
 DROP TABLE rideshare.jan_green_two_rider;
-/*
+DROP TABLE rideshare.jan_yellow_one_rider;
+DROP TABLE rideshare.jan_yellow_two_rider;
+
 DROP TABLE rideshare.feb_green_one_rider;
 DROP TABLE rideshare.feb_green_two_rider;
-DROP TABLE rideshare.mar_green_one_rider;
-DROP TABLE rideshare.mar_green_two_rider;
+DROP TABLE rideshare.feb_yellow_one_rider;
+DROP TABLE rideshare.feb_yellow_two_rider;
 */
+
 # add the ride_id column - do once - uncomment/ comment your section below based on your
 # main table names
 
@@ -44,23 +47,61 @@ WHERE pickup_latitude != 0 AND pickup_longitude != 0 AND dropoff_latitude != 0 A
 AND trip_distance > 0 AND pickup_datetime != dropoff_datetime
 ORDER BY pickup_datetime, pickup_latitude, pickup_longitude;
 
+# same thing uncomment/ comment your FROM statement based on your table names
+# get the single riders
+CREATE TABLE jan_yellow_one_rider
+SELECT ride_id, pickup_datetime, dropoff_datetime, pickup_longitude, pickup_latitude, dropoff_longitude, dropoff_latitude, passenger_count, trip_distance,
+get_speed(pickup_datetime, dropoff_datetime, trip_distance) AS 'speed'
+# FROM rideshare.green_1_january 
+FROM rideshare.january_yellow
+WHERE pickup_latitude != 0 AND pickup_longitude != 0 AND dropoff_latitude != 0 AND dropoff_longitude != 0 AND passenger_count = 1
+AND trip_distance > 0 AND pickup_datetime != dropoff_datetime
+ORDER BY pickup_datetime, pickup_latitude, pickup_longitude;
+
+# get the double riders
+CREATE TABLE jan_yellow_two_rider
+SELECT ride_id, pickup_datetime, dropoff_datetime, pickup_longitude, pickup_latitude, dropoff_longitude, dropoff_latitude, passenger_count, trip_distance,
+get_speed(pickup_datetime, dropoff_datetime, trip_distance) AS 'speed'
+# FROM rideshare.green_1_january
+FROM rideshare.january_yellow
+WHERE pickup_latitude != 0 AND pickup_longitude != 0 AND dropoff_latitude != 0 AND dropoff_longitude != 0 AND passenger_count = 2
+AND trip_distance > 0 AND pickup_datetime != dropoff_datetime
+ORDER BY pickup_datetime, pickup_latitude, pickup_longitude;
+
 CREATE TABLE feb_green_one_rider
-SELECT ride_id, pickup_datetime, dropoff_datetime, pickup_longitude, pickup_latitude, dropoff_longitude, dropoff_latitude, passenger_count, trip_distance
+SELECT ride_id, pickup_datetime, dropoff_datetime, pickup_longitude, pickup_latitude, dropoff_longitude, dropoff_latitude, passenger_count, trip_distance,
+get_speed(pickup_datetime, dropoff_datetime, trip_distance) AS 'speed'
 # FROM rideshare.green_2_january
 FROM rideshare.february_green
 WHERE pickup_latitude != 0 AND pickup_longitude != 0 AND dropoff_latitude != 0 AND dropoff_longitude != 0 AND passenger_count = 1
 AND trip_distance > 0 AND pickup_datetime != dropoff_datetime;
 
 CREATE TABLE feb_green_two_rider
-SELECT ride_id, pickup_datetime, dropoff_datetime, pickup_longitude, pickup_latitude, dropoff_longitude, dropoff_latitude, passenger_count, trip_distance
+SELECT ride_id, pickup_datetime, dropoff_datetime, pickup_longitude, pickup_latitude, dropoff_longitude, dropoff_latitude, passenger_count, trip_distance,
+get_speed(pickup_datetime, dropoff_datetime, trip_distance) AS 'speed'
 # FROM rideshare.green_2_january
 FROM rideshare.february_green
 WHERE pickup_latitude != 0 AND pickup_longitude != 0 AND dropoff_latitude != 0 AND dropoff_longitude != 0 AND passenger_count = 2
 AND trip_distance > 0 AND pickup_datetime != dropoff_datetime;
 
+CREATE TABLE feb_yellow_one_rider
+SELECT ride_id, pickup_datetime, dropoff_datetime, pickup_longitude, pickup_latitude, dropoff_longitude, dropoff_latitude, passenger_count, trip_distance,
+get_speed(pickup_datetime, dropoff_datetime, trip_distance) AS 'speed'
+# FROM rideshare.green_2_january
+FROM rideshare.february_yellow
+WHERE pickup_latitude != 0 AND pickup_longitude != 0 AND dropoff_latitude != 0 AND dropoff_longitude != 0 AND passenger_count = 1
+AND trip_distance > 0 AND pickup_datetime != dropoff_datetime;
+
+CREATE TABLE feb_yellow_two_rider
+SELECT ride_id, pickup_datetime, dropoff_datetime, pickup_longitude, pickup_latitude, dropoff_longitude, dropoff_latitude, passenger_count, trip_distance,
+get_speed(pickup_datetime, dropoff_datetime, trip_distance) AS 'speed'
+# FROM rideshare.green_2_january
+FROM rideshare.february_yellow
+WHERE pickup_latitude != 0 AND pickup_longitude != 0 AND dropoff_latitude != 0 AND dropoff_longitude != 0 AND passenger_count = 2
+AND trip_distance > 0 AND pickup_datetime != dropoff_datetime;
+
 
 # MERGING THE DATABASES TO ADD YELLOW AND GREEN TAXIS TOGETHER 
-
 # all january single riders from green and yellow taxis
 CREATE TABLE jan_single_riders
 SELECT * FROM rideshare.jan_green_one_rider
